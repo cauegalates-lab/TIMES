@@ -1,247 +1,49 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexus - Consultoria Educacional Estratégica</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-body: #0f172a;
-            --glass-bg: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --accent-cyan: #00d2ff;
-            --accent-purple: #9d50bb;
-            --primary-gradient: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
-            --card-gradient: linear-gradient(145deg, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.8));
-            --text-main: #e2e8f0;
-            --text-muted: #94a3b8;
-            --fechamento-color: #4ade80;
-        }
+  <meta charset="UTF-8">
+  <title>Times - Atualização Automática</title>
 
-        body {
-            font-family: 'Outfit', sans-serif;
-            background-color: var(--bg-body);
-            background-image: radial-gradient(circle at 50% 0%, #1e293b 0%, #0f172a 100%);
-            color: var(--text-main);
-            margin: 0;
-            padding: 40px 15px;
-            line-height: 1.6;
-        }
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: #ffffff;
+      overflow: hidden;
+    }
 
-        .wrapper { max-width: 1200px; margin: 0 auto; }
-
-        header { text-align: center; margin-bottom: 40px; }
-        header h1 {
-            font-size: 2.8em; margin-bottom: 10px; font-weight: 600;
-            background: var(--primary-gradient);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            letter-spacing: -1px;
-        }
-
-        /* PERGUNTA DE SONDAGEM INICIAL */
-        .sondagem-inicial {
-            background: linear-gradient(90deg, rgba(0, 210, 255, 0.1), rgba(157, 80, 187, 0.1));
-            border: 1px solid var(--accent-cyan);
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 40px;
-            text-align: center;
-        }
-        .sondagem-inicial h3 { color: var(--accent-cyan); margin: 0 0 10px 0; font-size: 0.9em; text-transform: uppercase; letter-spacing: 2px; }
-        .sondagem-inicial p { font-size: 1.3em; margin: 0; font-weight: 400; color: #fff; line-height: 1.4; }
-
-        .term-link {
-            color: var(--accent-cyan);
-            text-decoration: underline dotted;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: 600;
-        }
-        .term-link:hover { color: #fff; text-shadow: 0 0 10px var(--accent-cyan); }
-
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9); backdrop-filter: blur(10px);
-            display: none; justify-content: center; align-items: center; z-index: 1000;
-        }
-        .modal-content {
-            background: var(--card-gradient); border: 1px solid var(--accent-cyan);
-            padding: 45px; border-radius: 28px; max-width: 650px; width: 90%;
-            box-shadow: 0 0 50px rgba(0, 210, 255, 0.3); position: relative;
-        }
-        .modal-content h2 { color: var(--accent-cyan); margin-top: 0; font-size: 1.8em; border-bottom: 1px solid var(--glass-border); padding-bottom: 15px; }
-        .modal-content p { font-size: 1.15em; line-height: 1.8; color: var(--text-main); margin-top: 20px; }
-        .close-modal { position: absolute; top: 20px; right: 25px; font-size: 32px; cursor: pointer; color: var(--text-muted); }
-
-        .info-carreira {
-            background: var(--glass-bg); border: 1px solid var(--glass-border);
-            border-radius: 24px; padding: 40px; margin-bottom: 40px;
-        }
-        .info-carreira h2 { color: var(--accent-cyan); margin-top: 0; font-size: 1.6em; text-transform: uppercase; }
-        .grid-info { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 25px; }
-        .info-item h4 { color: var(--accent-purple); margin-bottom: 12px; text-transform: uppercase; font-size: 0.9em; }
-
-        .bloco-atendimento {
-            background: var(--card-gradient); border-radius: 24px;
-            border: 1px solid var(--glass-border); margin-bottom: 50px;
-            overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-        }
-        .fase-titulo {
-            background: var(--glass-border); padding: 22px 35px;
-            font-size: 1em; font-weight: 600; text-transform: uppercase;
-            color: var(--accent-cyan); border-bottom: 1px solid var(--glass-border);
-        }
-        .conteudo { padding: 40px; }
-        .script-consultoria {
-            background: rgba(255, 255, 255, 0.02); padding: 30px;
-            border-radius: 20px; border-left: 5px solid var(--accent-cyan);
-            font-size: 1.15em; margin-bottom: 40px;
-        }
-        .script-consultoria strong { color: #fff; font-weight: 600; }
-        .objecao-area h3 { font-size: 0.85em; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2.5px; margin-bottom: 25px; }
-        .grid-objecoes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
-        .objecao-card { background: rgba(15, 23, 42, 0.5); border: 1px solid var(--glass-border); padding: 25px; border-radius: 20px; font-size: 0.95em; }
-        .objecao-card strong { color: #ff4757; display: block; margin-bottom: 12px; font-size: 1.1em; }
-        .fechamento-final {
-            margin-top: 40px; padding: 25px; background: rgba(74, 222, 128, 0.08);
-            border: 1px solid rgba(74, 222, 128, 0.3); color: var(--fechamento-color);
-            font-weight: 600; text-align: center; border-radius: 16px; font-size: 1.1em;
-        }
-
-        @media (max-width: 992px) { .grid-objecoes { grid-template-columns: 1fr; } }
-    </style>
+    iframe {
+      width: 100vw;
+      height: 100vh;
+      border: none;
+    }
+  </style>
 </head>
 <body>
 
-<div class="wrapper">
-    <header>
-        <h1>Nexus Consultoria</h1>
-        <p>Estratégia Avançada para Carreira Docente</p>
-    </header>
+  <iframe id="planilhaTimes"></iframe>
 
-    <section class="sondagem-inicial">
-        <h3>Sondagem Pós-Grade</h3>
-        <p>"Professor(a), hoje você busca essa 2ª graduação mais para <strong>aumentar o salário</strong>, <strong>mudar sua área</strong>, ou <strong>se posicionar melhor</strong> nos próximos anos?"</p>
-    </section>
+  <script>
+    const linkBase = "https://docs.google.com/spreadsheets/d/1m0zpU8j4v6vYIYLUz_-Z84uO4TMYtvC9DbJmo9VbZc0/edit?gid=2004879334#gid=2004879334";
 
-    <section class="info-carreira">
-        <h2>⚡ Inteligência de Carreira</h2>
-        <div class="grid-info">
-            <div class="info-item">
-                <h4>Evolução de Faixa</h4>
-                <p>A pós-graduação é o motor da <span class="term-link" onclick="openModal('progressao')">progressão vertical</span>. Sem o título, seu salário fica travado por anos.</p>
-            </div>
-            <div class="info-item">
-                <h4>Vantagem Financeira</h4>
-                <p>Planos de carreira garantem saltos de <span class="term-link" onclick="openModal('aumento')">10% a 25%</span> a mais no seu bolso todo mês.</p>
-            </div>
-            <div class="info-item">
-                <h4>Cronograma de Ganho</h4>
-                <p>Ficar atento às <span class="term-link" onclick="openModal('janelas')">janelas de progressão</span> evita que você trabalhe de graça para o governo.</p>
-            </div>
-        </div>
-    </section>
+    function atualizarTela() {
+      const agora = new Date().getTime();
 
-    <div class="bloco-atendimento">
-        <div class="fase-titulo">Opção 01: Foco em Progressão Salarial</div>
-        <div class="conteudo">
-            <div class="script-consultoria">
-                "Professor(a), perfeito. Você está pensando como profissional estratégico. Dentro da carreira docente, quem entende o plano de cargos sabe que <span class="term-link" onclick="openModal('especializacao')">especialização não é opcional</span>, é <strong>ferramenta de avanço.</strong> O que eu sempre explico é: quem começa antes, progride antes. Cada ano sem pós é um ano de salário que deixa de evoluir. Se o seu foco é crescimento financeiro, minha recomendação técnica é iniciar agora e já colocar seu nome na próxima progressão."
-            </div>
-            <div class="objecao-area">
-                <h3>Contorno de Objeções:</h3>
-                <div class="grid-objecoes">
-                    <div class="objecao-card"><strong>"Vou pensar"</strong> "No plano de carreira, tempo é dinheiro. Enquanto você pensa, o edital de progressão se aproxima e o prejuízo aumenta. <strong>Vamos garantir sua vaga antes que o prazo acabe?</strong>"</div>
-                    <div class="objecao-card"><strong>"Tá caro"</strong> "Caro é manter o salário atual por mais um ano sabendo que você poderia ganhar 20% a mais agora. <strong>Faz sentido pra você investir um pouco agora para lucrar todo mês depois?</strong>"</div>
-                    <div class="objecao-card"><strong>"Mês que vem"</strong> "Se deixar para o mês que vem, seu certificado atrasa e você perde o ciclo de aumento deste semestre. <strong>Podemos fazer sua inscrição hoje para não perder esse dinheiro?</strong>"</div>
-                </div>
-            </div>
-            <div class="fechamento-final">➡ Ação: "Posso organizar sua matrícula para você já garantir isso?"</div>
-        </div>
-    </div>
+      const linkAtualizado =
+        "https://docs.google.com/spreadsheets/d/1m0zpU8j4v6vYIYLUz_-Z84uO4TMYtvC9DbJmo9VbZc0/edit?gid=2004879334&atualizacao=" +
+        agora +
+        "#gid=2004879334";
 
-    <div class="bloco-atendimento">
-        <div class="fase-titulo">Opção 02: Foco em Mobilidade e Competitividade</div>
-        <div class="conteudo">
-            <div class="script-consultoria">
-                "Excelente decisão. O professor que amplia formação se torna mais competitivo, mais requisitado e menos dependente de uma única disciplina. Hoje as redes valorizam muito quem tem formação complementar e visão pedagógica ampliada. Eu costumo orientar meus alunos a sempre pensarem em <span class="term-link" onclick="openModal('mobilidade')">mobilidade profissional.</span> Se você já tem essa visão, faz total sentido estruturar isso agora."
-            </div>
-            <div class="objecao-area">
-                <h3>Contorno de Objeções:</h3>
-                <div class="grid-objecoes">
-                    <div class="objecao-card"><strong>"Falar com esposo(a)"</strong> "O melhor argumento para ele(a) é mostrar como essa nova área trará mais opções de aulas e renda para a família. <strong>Quer que eu te envie os detalhes do aumento para você mostrar a ele(a)?</strong>"</div>
-                    <div class="objecao-card"><strong>"Vou fazer depois"</strong> "As atribuições de aula ocorrem em ciclos. Se você não tiver a formação agora, a vaga ficará com outro colega. <strong>Vamos garantir que essa vaga seja sua?</strong>"</div>
-                    <div class="objecao-card"><strong>"Estou sem tempo"</strong> "Nossa metodologia é flexível justamente para o professor que já atua. Você ganha mobilidade sem sacrificar sua rotina. <strong>Podemos começar com uma carga horária reduzida para você testar?</strong>"</div>
-                </div>
-            </div>
-            <div class="fechamento-final">➡ Ação: "Vamos formalizar sua matrícula e já deixar isso encaminhado?"</div>
-        </div>
-    </div>
-
-    <div class="bloco-atendimento">
-        <div class="fase-titulo">Opção 03: Foco em Autoridade e Estabilidade</div>
-        <div class="conteudo">
-            <div class="script-consultoria">
-                "Ótimo. Isso mostra maturidade profissional. A educação está cada vez mais exigente, e quem se antecipa constrói autoridade e estabilidade. O erro de muitos professores é buscar especialização só quando surge uma exigência. <span class="term-link" onclick="openModal('estabilidade')">Quem se prepara antes, escolhe melhor as oportunidades.</span> Se sua intenção é se posicionar forte nos próximos anos, a decisão inteligente é começar agora."
-            </div>
-            <div class="objecao-area">
-                <h3>Contorno de Objeções:</h3>
-                <div class="grid-objecoes">
-                    <div class="objecao-card"><strong>"Tá caro"</strong> "Insegurança profissional custa muito mais caro. Esse investimento garante que você seja indispensável na sua rede. <strong>O que vale mais: o valor da parcela ou a sua segurança no cargo?</strong>"</div>
-                    <div class="objecao-card"><strong>"Vou pensar"</strong> "A autoridade é construída com antecedência. Esperar para se qualificar é permitir que o mercado te deixe para trás. <strong>Qual o melhor momento para começarmos a construir seu novo currículo?</strong>"</div>
-                    <div class="objecao-card"><strong>"Falar com esposo(a)"</strong> "Ter um currículo forte é a maior garantia de estabilidade financeira que você pode oferecer para sua casa hoje. <strong>Vamos deixar tudo pronto para você dar essa boa notícia em casa?</strong>"</div>
-                </div>
-            </div>
-            <div class="fechamento-final">➡ Ação: "Posso confirmar sua vaga para garantir sua estabilidade?"</div>
-        </div>
-    </div>
-</div>
-
-<div id="infoModal" class="modal-overlay" onclick="closeModal()">
-    <div class="modal-content" onclick="event.stopPropagation()">
-        <span class="close-modal" onclick="closeModal()">&times;</span>
-        <h2 id="modalTitle">Título</h2>
-        <p id="modalDesc">Descrição...</p>
-    </div>
-</div>
-
-<script>
-    const data = {
-        'progressao': { 
-            title: 'Subir de Nível na Carreira', 
-            desc: 'Isso acontece quando você muda de faixa no seu trabalho por causa de um novo diploma. É como subir um degrau na escada do salário: você sai do nível de graduado e passa para o nível de especialista. A diferença no contracheque é imediata e para sempre.' 
-        },
-        'aumento': { 
-            title: 'Dinheiro Extra no Bolso', 
-            desc: 'A pós-graduação se paga sozinha. Como o aumento no salário costuma ser de 10% a 25%, em poucos meses o valor que você ganha a mais já cobre o que você pagou no curso. Depois disso, todo esse dinheiro a mais vira lucro direto na sua conta, todo mês.' 
-        },
-        'janelas': { 
-            title: 'Prazos da Secretaria (RH)', 
-            desc: 'As prefeituras e o estado não dão o aumento a qualquer hora. Eles têm datas certas para você entregar o diploma. Se você perder o prazo deste semestre por poucos dias, terá que esperar o ano que vem para começar a receber. Começar a pós agora é garantir que você tenha o diploma em mãos na hora certa.' 
-        },
-        'especializacao': { 
-            title: 'Pós-Graduação Estratégica', 
-            desc: 'Não é qualquer curso. É escolher uma área que conte pontos máximos na sua rede de ensino. É como comprar uma "chave" que abre a porta do aumento salarial. É a maneira mais segura e rápida de ganhar mais sem precisar fazer outro concurso público.' 
-        },
-        'mobilidade': { 
-            title: 'Ter Mais Opções de Trabalho', 
-            desc: 'Ter uma pós permite que você dê aulas de outras matérias ou trabalhe em cargos diferentes, como coordenador. Isso é ótimo porque você não fica preso a uma escola só e pode escolher os melhores horários e lugares para trabalhar, ganhando mais e cansando menos.' 
-        },
-        'estabilidade': { 
-            title: 'Segurança no Emprego', 
-            desc: 'Em tempos de mudanças nas escolas, quem tem mais títulos é o último a ser dispensado e o primeiro a escolher as turmas. Ser um especialista faz com que você seja indispensável. É uma proteção para o seu futuro e para a renda da sua família.' 
-        }
-    };
-
-    function openModal(key) {
-        document.getElementById('modalTitle').innerText = data[key].title;
-        document.getElementById('modalDesc').innerText = data[key].desc;
-        document.getElementById('infoModal').style.display = 'flex';
+      document.getElementById("planilhaTimes").src = linkAtualizado;
     }
-    function closeModal() { document.getElementById('infoModal').style.display = 'none'; }
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
-</script>
+
+    atualizarTela();
+
+    // Atualiza visualmente na TV de 1 em 1 minuto
+    setInterval(atualizarTela, 60000);
+  </script>
 
 </body>
 </html>
