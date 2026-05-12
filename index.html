@@ -26,13 +26,11 @@
   <iframe id="planilhaTimes"></iframe>
 
   <script>
-    const linkBase = "https://docs.google.com/spreadsheets/d/1m0zpU8j4v6vYIYLUz_-Z84uO4TMYtvC9DbJmo9VbZc0/edit?gid=2004879334#gid=2004879334";
-
     function atualizarTela() {
       const agora = new Date().getTime();
 
       const linkAtualizado =
-        "https://docs.google.com/spreadsheets/d/1m0zpU8j4v6vYIYLUz_-Z84uO4TMYtvC9DbJmo9VbZc0/edit?gid=2004879334&atualizacao=" +
+        "https://docs.google.com/spreadsheets/d/1m0zpU8j4v6vYIYLUz_-Z84uO4TMYtvC9DbJmo9VbZc0/preview?gid=2004879334&atualizacao=" +
         agora +
         "#gid=2004879334";
 
@@ -41,7 +39,7 @@
 
     atualizarTela();
 
-    // Atualiza visualmente na TV de 1 em 1 minuto
+    // Recarrega a visualização da TV de 1 em 1 minuto
     setInterval(atualizarTela, 60000);
   </script>
 
