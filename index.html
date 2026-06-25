@@ -23,18 +23,18 @@
 </head>
 <body>
 
-  <iframe id="planilhaTimes"></iframe>
+  <iframe id="planilhaDisputa"></iframe>
 
   <script>
     function atualizarTela() {
       const agora = new Date().getTime();
 
       const linkAtualizado =
-        "https://docs.google.com/spreadsheets/d/1m0zpU8j4v6vYIYLUz_-Z84uO4TMYtvC9DbJmo9VbZc0/preview?gid=2004879334&atualizacao=" +
+        "https://docs.google.com/spreadsheets/d/1m0zpU8j4v6vYIYLUz_-Z84uO4TMYtvC9DbJmo9VbZc0/preview?pli=1&gid=1317593406&atualizacao=" +
         agora +
-        "#gid=2004879334";
+        "#gid=1317593406";
 
-      document.getElementById("planilhaTimes").src = linkAtualizado;
+      document.getElementById("planilhaDisputa").src = linkAtualizado;
     }
 
     atualizarTela();
