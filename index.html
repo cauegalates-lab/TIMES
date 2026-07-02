@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Times - Atualização Automática</title>
 
   <style>
@@ -18,21 +19,27 @@
       width: 100vw;
       height: 100vh;
       border: none;
+      display: block;
     }
   </style>
 </head>
 <body>
 
-  <iframe id="planilhaTimes"></iframe>
+  <iframe
+    id="planilhaTimes"
+    title="Aba Times"
+    loading="eager"
+  ></iframe>
 
   <script>
+    const PLANILHA_ID = "1m0zpU8j4v6vYIYLUz_-Z84uO4TMYtvC9DbJmo9VbZc0";
+    const GID_TIMES = "2004879334";
+
     function atualizarTela() {
-      const agora = new Date().getTime();
+      const agora = Date.now();
 
       const linkAtualizado =
-        "https://docs.google.com/spreadsheets/d/1m0zpU8j4v6vYIYLUz_-Z84uO4TMYtvC9DbJmo9VbZc0/preview?pli=1&gid=1317593406&atualizacao=" +
-        agora +
-        "#gid=1317593406";
+        `https://docs.google.com/spreadsheets/d/${PLANILHA_ID}/preview?pli=1&gid=${GID_TIMES}&atualizacao=${agora}#gid=${GID_TIMES}`;
 
       document.getElementById("planilhaTimes").src = linkAtualizado;
     }
